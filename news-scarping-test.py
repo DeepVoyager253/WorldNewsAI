@@ -27,9 +27,7 @@ articles = json.loads(response.text)["articles"]
 for article in articles:
     print(article["title"])
     print(article["source"]["name"])
-
-
+    
+    print(article["url"])
 import extract_text
-print(extract_text.extract_text(articles[0]["url"]))
-
-
+print(extract_text.extract_text(requests.get(article["url"]).text))
