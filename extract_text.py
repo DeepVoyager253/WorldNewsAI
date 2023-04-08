@@ -1,8 +1,8 @@
 import newspaper
 from newspaper import Article
 
-def extract_text(html):
+def extract_text(url):
     article = Article('', language='en')
-    article.set_html(html)
+    article.download(url)
     article.parse()
     return article.text
