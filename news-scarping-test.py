@@ -20,7 +20,7 @@ request_url = f"{url}?pageSize=1&q={topic}&apiKey={api_key}&sortBy=Popularity&fr
 response = requests.get(request_url)
 articles = json.loads(response.text)["articles"]
 
-# print out article titles and sources
+# print out article titles and sour ces
 for article in articles:
     print(article["title"])
     print(article["source"]["name"])
