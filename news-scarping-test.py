@@ -1,7 +1,9 @@
 import os
-import requests
 import json
+from newsapi import NewsApiClient
+import requests
 from dotenv import load_dotenv
+import extract_text
 load_dotenv()
 
 
@@ -30,5 +32,4 @@ for article in articles:
     print(article["source"]["name"])
     
     print(article["url"])
-import extract_text
 print(extract_text.extract_text(requests.get(article["url"]).text))
