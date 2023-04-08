@@ -20,7 +20,7 @@ request_url = f"{URL}?pageSize=1&q={TOPIC}\
             &from=2023-04-07&to=2023-04-07"
 
 # make HTTP request and parse response as JSON
-response = requests.get(request_url)
+response = requests.get(request_url, timeout=None)
 articles = json.loads(response.text)["articles"]
 
 # print out article titles and sour ces
