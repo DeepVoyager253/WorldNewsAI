@@ -10,14 +10,15 @@ URL = "https://newsapi.org/v2/top-headlines"
 api_key = os.getenv("API-KEY")
 
 # set search parameters
-COUNTRY = ""
-TOPIC = "ChatGPT"
+COUNTRY = "us"
+TOPIC = "israel"
 
 # construct request URL with parameters
-request_url = f"{URL}?pageSize=1&q={TOPIC}\
-    &apiKey={api_key}\
+request_url = f"{URL}?pageSize=1\
+    &apiKey={api_key}&q={TOPIC}\
         &sortBy=Popularity\
-            &from=2023-04-07&to=2023-04-07"
+            &from=2023-04-07&to=2023-04-07\
+                &country={COUNTRY}"
 
 # make HTTP request and parse response as JSON
 response = requests.get(request_url, timeout=None)
