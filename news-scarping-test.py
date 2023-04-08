@@ -6,15 +6,18 @@ load_dotenv()
 
 
 # set API endpoint URL and API key
-url = "https://newsapi.org/v2/top-headlines"
+URL = "https://newsapi.org/v2/top-headlines"
 api_key = os.getenv("API-KEY")
 
 # set search parameters
-country = ""
-topic = "ChatGPT"
+COUNTRY = ""
+TOPIC = "ChatGPT"
 
 # construct request URL with parameters
-request_url = f"{url}?pageSize=1&q={topic}&apiKey={api_key}&sortBy=Popularity&from=2023-04-07&to=2023-04-07"
+request_url = f"{URL}?pageSize=1&q={TOPIC}\
+    &apiKey={api_key}\
+        &sortBy=Popularity\
+            &from=2023-04-07&to=2023-04-07"
 
 # make HTTP request and parse response as JSON
 response = requests.get(request_url)
