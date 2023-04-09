@@ -1,19 +1,16 @@
 from newsapi import NewsApiClient
-import os
 import requests
-import json
 from trafilatura import extract
-from dotenv import load_dotenv
-load_dotenv()
+
 class NewsScraper:
-    def __init__(self, search_mode, topic=None, dntf=None, dntt=None, country=None, how_many=None, sort_by=None):
+    def __init__(self, search_mode:str, API_KEY:str,  topic=None, dntf=None, dntt=None, country=None, how_many=None, sort_by=None):
         if search_mode == "everything":
             self.search_mode = search_mode
         elif search_mode == "top":
             self.search_mode = "top-headlines"
         else:
             raise Exception("Invalid search mode Please insert \"top\" or \"everything\"")
-        
+        self.API_KEY = API_KEY
         self.topic = topic
         self.dateAndTimeFrom = dntf
         self.dateAndTimeTo = dntt
@@ -21,7 +18,7 @@ class NewsScraper:
         self.pageAmount = how_many
         self.sort_by = sort_by
     def scrape(self):
-        scraper = NewsApiClient(api_key=os.getenv('API-KEY'))
+        scraper = NewsApiClient(api_key=self.API_KEY)
         if self.search_mode == "everything":
             scraped = scraper.get_everything(q=self.topic\
                                              , language='en'\
@@ -56,7 +53,7 @@ class NewsArticle:
     @property
     def description(self):
         return self.article_json['description']
-if __name__ == "__main__":
-    scraper = NewsScraper('top', how_many=1)
-    article = NewsArticle(scraper.scrape()[0])
-    print(article.source)        
+# if __name__ == "__main__":
+#     scraper = NewsScraper('everything', how_many=1, topic='microsoft')
+#     article = NewsArticle(scraper.scrape()[0])
+#     print(article.full_content)        
